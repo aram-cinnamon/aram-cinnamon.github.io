@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="sheet-music.css">
+		<title>Soave sia il vento</title>
+	</head>
+	<body>
+		<div id="chart">
+			<svg></svg>
+		</div>
+	</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="sheet-music.js"></script>
+<script>
+	const _original_key = { [sharps_or_flats]: "F♯ C♯ G♯ D♯", offset: +2 };
+	const _c_major = { [sharps_or_flats]: "none", offset: 0 };
+	const key = _c_major;
+
+	const BAR = create_bar(key[sharps_or_flats], 126, 4, 1/4);
+	const BARS = add_lengths_to_bars(
+		create_array_from_length(41, (i) => BAR)
+	);
+	const PARTS = [
+		{
+			[css_class]: "soprano",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 1 + f(1, 2) + f(1, 4) },
+					],
+				},
+			// Soave sia il vento,
+				{
+					[text]: "so",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ve ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sia il ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ven",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(3, 16) },
+						{ [pitch]: 7, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// tranquilla sia l'onda,
+				{
+					[text]: "tran",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(3, 16) },
+						{ [pitch]: 6, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "quil",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 16) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "la",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "sia",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "l'on",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ed ogni elemento
+				{
+					[text]: "ed ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "o",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "gni e",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "le",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "men",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4, [length]: f(3, 16) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+						{ [pitch]: 6, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// Soave sia il vento,
+				{
+					[text]: "so",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(3, 8) },
+						{ [pitch]: 6, [length]: f(1, 16) },
+						{ [pitch]: 7, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "ve ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sia ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "il ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ven",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 2) },
+					],
+				},
+			// tranquilla sia l'onda,
+				{
+					[text]: "tran",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "quil",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+						{ [pitch]: 8, [length]: f(1, 8) },
+						{ [pitch]: 7, [length]: f(1, 8) },
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "la ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sia ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 3, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "l'on",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3, [length]: f(3, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+			// ed ogni elemento
+				{
+					[text]: "ed ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "o",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "gni ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "e",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "le",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "men",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+						{ [pitch]: 6, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 8) },
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(3, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3, [length]: f(1, 1) },
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 1) },
+						{ [pitch]: 5.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: 8, [length]: f(17, 8) },
+						{ [pitch]: 7, [length]: f(1, 16) },
+						{ [pitch]: 6, [length]: f(1, 16) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 8) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3, [length]: f(1, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+						{ [pitch]: 8.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "alto",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 1 + f(1, 2) + f(1, 4) },
+					],
+				},
+			// Soave sia il vento,
+				{
+					[text]: "so",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ve ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sia il ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ven",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(3, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// tranquilla sia l'onda,
+				{
+					[text]: "tran",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 16) },
+						{ [pitch]: 2, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "quil",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 16) },
+						{ [pitch]: 1, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "la ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "sia ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "l'on",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 8) },
+						{ [pitch]: 1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ed ogni elemento
+				{
+					[text]: "ed ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "o",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "gni e",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "le",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "men",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(3, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+						{ [pitch]: 1, [length]: f(1, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 8) },
+						{ [pitch]: 1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+						{ [pitch]: -0.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// Soave sia il vento,
+				{
+					[text]: "so",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ve ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sia il ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ven",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(3, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+						{ [pitch]: 2, [length]: f(1, 8) },
+					],
+				},
+			// tranquilla sia l'onda,
+				{
+					[text]: "tran",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "quil",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3, [length]: f(1, 8) },
+						{ [pitch]: 6, [length]: f(1, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "la ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 2, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sia ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "l'on",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(3, 8) },
+						{ [pitch]: -0.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 4) },
+					],
+				},
+			// ed ogni elemento
+				{
+					[text]: "ed ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "o",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+						{ [pitch]: 6, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "gni ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "e",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "le",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "men",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(3, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 8) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 8) },
+						{ [pitch]: 2, [length]: f(1, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 1) },
+						{ [pitch]: 1, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+						{ [pitch]: 1, [length]: f(1, 16) },
+						{ [pitch]: 2, [length]: f(1, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+						{ [pitch]: 1, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 1) },
+						{ [pitch]: 1, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(17, 8) },
+						{ [pitch]: 5.5, [length]: f(1, 16) },
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 16) },
+						{ [pitch]: 2, [length]: f(1, 16) },
+						{ [pitch]: 1, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+						{ [pitch]: 1, [length]: f(1, 8) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1.5, [length]: f(1, 8) },
+						{ [pitch]: 2, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0 , [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5 , [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5 , [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1 , [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0 , [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0 , [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5 , [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5 , [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1 , [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0 , [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "bass",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 1 + f(1, 2) + f(1, 4) },
+					],
+				},
+			// Soave sia il vento,
+				{
+					[text]: "so",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ve ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sia il ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ven",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// tranquilla sia l'onda,
+				{
+					[text]: "tran",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "quil",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "la",
+					[pitches_and_lengths]: [
+						{ [pitch]:-5 , [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sia",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "l'on",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "da",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ed ogni elemento
+				{
+					[text]: "ed ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "o",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "gni e",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "le",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "men",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(3, 16) },
+						{ [pitch]: -3.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no(stri) ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// Soave sia il vento,
+				{
+					[text]: "so",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ve ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sia il ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ven",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 2) },
+					],
+				},
+			// tranquilla sia l'onda,
+				{
+					[text]: "tran",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "quil",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 8) },
+						{ [pitch]: -3, [length]: f(1, 8) },
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "la ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 8) },
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sia ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: f(1, 8) },
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "l'on",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+			// ed ogni elemento
+				{
+					[text]: "ed ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "o",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "gni ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "e",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "le",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "men",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 8) },
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "da ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 1) },
+						{ [pitch]: -0.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3, [length]: f(1, 1) },
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// (ai nostri desir.)
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// benigno risponda
+				{
+					[text]: "be",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ni",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 8) },
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "gno ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ri",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "spon",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+						{ [pitch]: -3, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "da",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+			// (ai nostri desir.)
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 8) },
+						{ [pitch]: -6.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -7.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -8.5, [length]: f(3, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -8.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -8.5, [length]: f(1, 16) },
+						{ [pitch]: -7.5, [length]: f(1, 16) },
+						{ [pitch]: -6.5, [length]: f(1, 16) },
+						{ [pitch]: -6, [length]: f(1, 16) },
+						{ [pitch]: -5, [length]: f(1, 16) },
+						{ [pitch]: -4, [length]: f(1, 16) },
+						{ [pitch]: -3.5, [length]: f(1, 16) },
+						{ [pitch]: -2.5, [length]: f(1, 16) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -4, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -7.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// ai nostri desir.
+				{
+					[text]: "ai ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "no",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "stri ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "de",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "sir ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			],
+		},
+	];
+	draw("div#chart > svg", BARS, transpose(reshape_parts_to_notes(PARTS), key.offset));
+</script>

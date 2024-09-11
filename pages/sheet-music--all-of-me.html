@@ -1,0 +1,3923 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>All of Me</title>
+		<link rel="stylesheet" type="text/css" href="sheet-music.css">
+		<style type="text/css">
+			p#lyrics{
+			}
+			span.line{
+				background-color: white;
+				color: black;
+			}
+			span.line.B{
+				background-color: lightseagreen;
+			}
+			span.line.C{
+				background-color: lightcoral;
+			}
+			span.line.C2{
+				background-color: lightsalmon;
+			}
+			span.line.X{
+				background-color: lightslategray;
+			}
+			span.line.D{
+				background-color: palegoldenrod;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chart">
+			<svg></svg>
+		</div>
+		<p id="lyrics">
+			<span class="line">[5]</span>
+			<br/><span class="line">What would I do without your smart mouth?</span>
+			<br/><span class="line">Drawing me in, and you kicking me out</span>
+			<br/><span class="line">You've got my head spinning, no kidding</span>
+			<br/><span class="line">I can't pin you down</span>
+			<br/><span class="line">[11]</span>
+			<br/><span class="line">What's going on in that beautiful mind?</span>
+			<br/><span class="line">I'm on your magical mystery ride</span>
+			<br/><span class="line">And I'm so dizzy, don't know what hit me</span>
+			<br/><span class="line">But I'll be alright</span>
+			<br/>
+			<br/><span class="line B">[21]</span>
+			<br/><span class="line B">My head's underwater, but I'm breathing fine</span>
+			<br/><span class="line B">You're crazy and I'm out of my mind</span>
+			<br/>
+			<br/><span class="line C">[28]</span>
+			<br/><span class="line C">'Cause all of me loves all of you</span>
+			<br/><span class="line C">Love your curves and all your edges, all your perfect imperfections</span>
+			<br/><span class="line C">Give your all to me, I'll give my all to you</span>
+			<br/><span class="line C">You're my end and my beginning. Even when I lose, I'm winning</span>
+			<br/><span class="line D">[44]</span>
+			<br/><span class="line D">'Cause I give you all of me</span>
+			<br/><span class="line D">And you give me all of you</span>
+			<br/>
+			<br/><span class="line D">[52]</span>
+			<br/><span class="line D">oh</span>
+			<br/>
+			<br/><span class="line">[53]</span>
+			<br/><span class="line">How many times do I have to tell you</span>
+			<br/><span class="line">Even when you're crying, you're beautiful too?</span>
+			<br/><span class="line">The world is beating you down</span>
+			<br/><span class="line">I'm around through every mood</span>
+			<br/><span class="line">[61]</span>
+			<br/><span class="line">You're my downfall, you're my muse</span>
+			<br/><span class="line">My worst distraction, my rhythm and blues</span>
+			<br/><span class="line">I can't stop singing, it's ringing</span>
+			<br/><span class="line">in my head for you</span>
+			<br/>
+			<br/><span class="line B">[69]</span>
+			<br/><span class="line B">My head's underwater, but I'm breathing fine</span>
+			<br/><span class="line B">You're crazy, and I'm out of my mind</span>
+			<br/>
+			<br/><span class="line C">[76]->[29]</span>
+			<br/><span class="line C">'Cause all of me loves all of you</span>
+			<br/><span class="line C">Love your curves and all your edges, all your perfect imperfections</span>
+			<br/><span class="line C">Give your all to me, I'll give my all to you</span>
+			<br/><span class="line C">You're my end and my beginning. Even when I lose, I'm winning</span>
+			<br/><span class="line D">[44]</span>
+			<br/><span class="line D">'Cause I give you all of me</span>
+			<br/><span class="line D">And you give me all of you</span>
+			<br/>
+			<br/><span class="line D">[77]</span>
+			<br/><span class="line D">oh</span>
+			<br/>
+			<br/><span class="line X">[78]</span>
+			<br/><span class="line X">Give me all of you</span>
+			<br/><span class="line X">Cards on the table, we're both showing hearts</span>
+			<br/><span class="line X">Risking it all, though it's hard</span>
+			<br/>
+			<br/><span class="line C">[87]</span>
+			<br/><span class="line C">'Cause all of me loves all of you</span>
+			<br/><span class="line C">Love your curves and all your edges, all your perfect imperfections</span>
+			<br/><span class="line C">Give your all to me, I'll give my all to you</span>
+			<br/><span class="line C">You're my end and my beginning. Even when I lose, I'm winning</span>
+			<br/><span class="line D">[102]</span>
+			<br/><span class="line D">I give you all of me</span>
+			<br/><span class="line D">And you give me all of you</span>
+			<br/><span class="line D">[110]</span>
+			<br/><span class="line D">I give you all of me</span>
+			<br/><span class="line D">And you give me all of you</span>
+			<br/>
+			<br/><span class="line D">[117]</span>
+			<br/><span class="line D">oh</span>
+		</p>
+	</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="sheet-music.js"></script>
+<script>
+	const BAR = create_bar("B♭", 126, 4, 1/4);
+	const BARS = add_lengths_to_bars(
+		create_array_from_length(118, (i) => BAR)
+	);
+	const PARTS = [
+		{
+			[css_class]: "solo",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "What ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "would ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "do ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "with",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "out ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "smart ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "mouth ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "draw",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "in' ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "in ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "kick",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "out? ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "You've ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "got ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "head ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 2) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "soprano",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 20 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 2) },
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+						{ [pitch]: 3.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: 2 },
+						{ [pitch]: 6, [length]: f(1, 2) },
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+						{ [pitch]: 6, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+			// 'Causes all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "loves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(3, 2) },
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+						{ [pitch]: 2.5, [length]: 1 },
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Give your all to me,
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// I'll give my all to you.
+				{
+					[text]: "I'll ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "Oh ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(3, 2) },
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+						{ [pitch]: 5, [length]: 1 },
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// 'Cause I give you all of me,
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 8.5, [length]: f(1, 2) },
+						{ [pitch]: 8, [length]: f(1, 2) },
+						{ [pitch]: 7, [length]: f(1, 2) },
+						{ [pitch]: 6, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(5, 8) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "mezzo",
+			[texts_and_notes]: [
+			// [5]
+			// What would I do without your smart mouth?
+			// Drawing me in, and you kicking me out
+			// You've got my head spinning, no kidding
+			// I can't pin you down
+			// [11]
+			// What's going on in that beautiful mind?
+			// I'm on your magical mystery ride
+			// And I'm so dizzy, don't know what hit me
+			// But I'll be alright
+
+			// [21]
+			// My head's underwater, but I'm breathing fine
+			// You're crazy and I'm out of my mind
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 20 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: 2 },
+						{ [pitch]: 0, [length]: f(1, 2) },
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+						{ [pitch]: 2, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: 3 },
+						{ [pitch]: 3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+
+			// [28]
+			// 'Cause all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "loves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 4) },
+					],
+				},
+			// Love your curves and all your edges, all your perfect imperfections
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: 2 },
+						{ [pitch]: 1, [length]: 1 },
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Give your all to me, I'll give my all to you
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I'll ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 4) },
+					],
+				},
+			// You're my end and my beginning. Even when I lose, I'm winning
+				{
+					[text]: "Oh ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 2) },
+						{ [pitch]: 1, [length]: f(1, 2) },
+						{ [pitch]: 2.5, [length]: 1 },
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// [44]
+			// 'Cause I give you all of me
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 2) },
+						{ [pitch]: 6, [length]: f(1, 2) },
+						{ [pitch]: 5, [length]: f(1, 2) },
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(7, 8) },
+					],
+				},
+			// And you give me all of you
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 2) },
+						{ [pitch]: 6, [length]: f(1, 2) },
+						{ [pitch]: 5, [length]: f(1, 2) },
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// [52]
+			// oh
+				{
+					[text]: "oh. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+						{ [pitch]: 2, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 2) },
+					],
+				},
+
+			// [53]
+			// How many times do I have to tell you
+			// Even when you're crying, you're beautiful too?
+			// The world is beating you down
+			// I'm around through every mood
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 8 },
+					],
+				},
+			// [61]
+			// You're my downfall, you're my muse
+			// My worst distraction, my rhythm and blues
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+						{ [pitch]: 2, [length]: f(1, 4) },
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+						{ [pitch]: 2, [length]: f(1, 4) },
+						{ [pitch]: 1, [length]: f(1, 2) },
+						{ [pitch]: 2.5, [length]: 1 },
+						{ [pitch]: 2, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// I can't stop singing, it's ringing
+			// in my head for you
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+						{ [pitch]: 2, [length]: f(1, 4) },
+						{ [pitch]: 2.5, [length]: 2 },
+						{ [pitch]: 2, [length]: 1 },
+						{ [pitch]: 1, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+
+			// [69]
+			// My head's underwater, but I'm breathing fine
+				{
+					[text]: "My ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "head's ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "un",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "der",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "wa",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ter, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 16) },
+						{ [pitch]: 3.5, [length]: f(1, 16) },
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "but ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "breath",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 16) },
+						{ [pitch]: 1, [length]: f(1, 16) },
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "fine ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+			// You're crazy, and I'm out of my mind
+				{
+					[text]: "You're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "cra",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 8) },
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "zy, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "out ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "mind ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+
+			// [76]->[29]
+			// 'Cause all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+			// Love your curves and all your edges, all your perfect imperfections
+			// Give your all to me, I'll give my all to you
+			// You're my end and my beginning. Even when I lose, I'm winning
+			// [44]
+			// 'Cause I give you all of me
+			// And you give me all of you
+				{
+					[text]: "",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// [77]
+			// oh
+				{
+					[text]: "oh. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+
+			// [78]
+			// Give me all of you
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 4) },
+						{ [pitch]: 6, [length]: f(1, 8) },
+						{ [pitch]: 5, [length]: f(1, 8) },
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+						{ [pitch]: 3.5, [length]: f(3, 8) },
+					],
+				},
+			// Cards on the table, we're both showing hearts
+				{
+					[text]: "Cards ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "on ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "the ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ta",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ble, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "we're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "both ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "show",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+						{ [pitch]: 2, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "hearts ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 2) },
+					],
+				},
+			// Risking it all, though it's hard
+				{
+					[text]: "Risk",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "it ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "though ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "it's ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "hard",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+
+			// [87]
+			// 'Cause all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "loves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Love your curves and all your edges, all your perfect imperfections
+				{
+					[text]: "Love ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "curves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ed",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ges, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "per",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "fect ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "im",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "per",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "fec",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "tions",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Give your all to me, I'll give my all to you
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I'll ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// You're my end and my beginning. Even when I lose, I'm winning
+				{
+					[text]: "You're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "end ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "beg",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "in",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ning. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "E",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ven ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "when ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "lose, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "win",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ning ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// [102]
+			// I give you all of me
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 2) },
+						{ [pitch]: 6, [length]: f(1, 2) },
+						{ [pitch]: 5, [length]: f(1, 2) },
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(7, 8) },
+					],
+				},
+			// And you give me all of you
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 7, [length]: f(1, 2) },
+						{ [pitch]: 6, [length]: f(1, 2) },
+						{ [pitch]: 5, [length]: f(1, 2) },
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 2) },
+					],
+				},
+			// [110]
+			// I give you all of me
+			// And you give me all of you
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 5 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// [117]
+			// oh
+				{
+					[text]: "oh. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+						{ [pitch]: 2, [length]: f(9, 8) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "alto",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 20 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: 2 },
+						{ [pitch]: 0, [length]: f(1, 2) },
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+						{ [pitch]: 2, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: 3 },
+						{ [pitch]: 2, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+			// 'Causes all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "loves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: 2 },
+						{ [pitch]: 1, [length]: 1 },
+						{ [pitch]: 2, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Give your all to me,
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// I'll give my all to you.
+				{
+					[text]: "I'll ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "Oh ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(3, 2) },
+						{ [pitch]: 1, [length]: f(1, 2) },
+						{ [pitch]: 2.5, [length]: 1 },
+						{ [pitch]: 3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// 'Cause I give you all of me,
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 6, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 4.5, [length]: 1 },
+						{ [pitch]: 2.5, [length]: f(7, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 2.5, [length]: f(5, 8) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "tenor",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 20 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -0.5, [length]: 2 },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "baritone",
+			[texts_and_notes]: [
+			// [5]
+			// What would I do without your smart mouth?
+			// Drawing me in, and you kicking me out
+			// You've got my head spinning, no kidding
+			// I can't pin you down
+			// [11]
+			// What's going on in that beautiful mind?
+			// I'm on your magical mystery ride
+			// And I'm so dizzy, don't know what hit me
+			// But I'll be alright
+
+			// [21]
+			// My head's underwater, but I'm breathing fine
+			// You're crazy and I'm out of my mind
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 20 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: 2 },
+						{ [pitch]: -3.5, [length]: 1 },
+						{ [pitch]: -6, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: 2 },
+						{ [pitch]: -1.5, [length]: f(1, 2) },
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+						{ [pitch]: -6, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+
+			// [28]
+			// 'Cause all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "loves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Love your curves and all your edges, all your perfect imperfections
+				{
+					[text]: "Love ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "curves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ed",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ges, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "per",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "fect ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "im",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "per",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "fec",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "tions ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Give your all to me, I'll give my all to you
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I'll ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// You're my end and my beginning. Even when I lose, I'm winning
+				{
+					[text]: "You're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "end ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "beg",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "in",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ning. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "E",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ven ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "when ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "lose, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "win",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ning",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// [44]
+			// 'Cause I give you all of me
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: 1 },
+						{ [pitch]: -1, [length]: f(7, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(7, 8) },
+					],
+				},
+			// And you give me all of you
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: 1 },
+						{ [pitch]: -1, [length]: f(7, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// [52]
+			// oh
+				{
+					[text]: "oh. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+						{ [pitch]: -6, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 1 },
+					],
+				},
+
+			// [53]
+			// How many times do I have to tell you
+				{
+					[text]: "How ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "man",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "y ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "times ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "do ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "have ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "tell ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "you, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Even when you're crying, you're beautiful too?
+				{
+					[text]: "E",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ven ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "when ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "cry",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ing, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "beau",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ti",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ful ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "too? ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// The world is beating you down
+				{
+					[text]: "The ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "world ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "is ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "beat",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "down. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(5, 8) },
+					],
+				},
+			// I'm around through every mood
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "a",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "round ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "through ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ev",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "er",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "y ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "mood ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// [61]
+			// You're my downfall, you're my muse
+				{
+					[text]: "You're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "down",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "fall, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "you're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "muse ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// My worst distraction, my rhythm and blues
+				{
+					[text]: "My ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "worst ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "dis",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "trac",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "tion, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "rhy",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "thm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "blues. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+			// I can't stop singing, it's ringing
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "can't ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "stop ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "sing",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ing, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "it's ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ring",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+			// in my head for you
+				{
+					[text]: "in ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "head ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "for ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(7, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+
+			// [69]
+			// My head's underwater, but I'm breathing fine
+				{
+					[text]: "My ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "head's ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "un",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "der",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "wa",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ter, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 16) },
+						{ [pitch]: -2.5, [length]: f(1, 16) },
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "but ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "breath",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "fine ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+			// You're crazy, and I'm out of my mind
+				{
+					[text]: "You're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "cra",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "zy, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "out ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "mind ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+
+			// [76]->[29]
+			// 'Cause all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+			// Love your curves and all your edges, all your perfect imperfections
+			// Give your all to me, I'll give my all to you
+			// You're my end and my beginning. Even when I lose, I'm winning
+			// [44]
+			// 'Cause I give you all of me
+			// And you give me all of you
+				{
+					[text]: "",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// [77]
+			// oh
+				{
+					[text]: "oh. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+
+			// [78]
+			// Give me all of you
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(9, 8) },
+					],
+				},
+			// Cards on the table, we're both showing hearts
+				{
+					[text]: "Cards ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "on ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "the ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "ta",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "ble, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "we're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "both ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "show",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 8) },
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "hearts ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 2) },
+					],
+				},
+			// Risking it all, though it's hard
+				{
+					[text]: "Risk",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "ing ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "it ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "though ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "it's ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "hard",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(3, 8) },
+					],
+				},
+
+			// [87]
+			// 'Cause all of me loves all of you
+				{
+					[text]: "'Cause ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "loves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 2) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Love your curves and all your edges, all your perfect imperfections
+				{
+					[text]: "Love ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "curves ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ed",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ges, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "per",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "fect ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "im",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "per",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "fec",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "tions",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// Give your all to me, I'll give my all to you
+				{
+					[text]: "Give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "your ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "I'll ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 4) },
+					],
+				},
+				{
+					[text]: "to ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// You're my end and my beginning. Even when I lose, I'm winning
+				{
+					[text]: "You're ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "end ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "my ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "beg",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "in",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ning. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "E",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ven ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "when ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "lose, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: "I'm ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "win",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "ning ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: f(1, 4) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+			// [102]
+			// I give you all of me
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: 1 },
+						{ [pitch]: -1, [length]: f(7, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(7, 8) },
+					],
+				},
+			// And you give me all of you
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: 1 },
+						{ [pitch]: -1, [length]: f(7, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 1 },
+					],
+				},
+			// [110]
+			// I give you all of me
+				{
+					[text]: "I ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 2) },
+						{ [pitch]: 0, [length]: f(1, 2) },
+						{ [pitch]: -1, [length]: f(1, 2) },
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(7, 8) },
+					],
+				},
+			// And you give me all of you
+				{
+					[text]: "and ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "give ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -1, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "me ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 0, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "all ",
+					[pitches_and_lengths]: [
+						{ [pitch]: 1, [length]: f(1, 2) },
+						{ [pitch]: 0, [length]: f(1, 2) },
+						{ [pitch]: -1, [length]: f(1, 2) },
+						{ [pitch]: -1.5, [length]: f(3, 8) },
+					],
+				},
+				{
+					[text]: "of ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+					],
+				},
+				{
+					[text]: "you, ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(5, 8) },
+					],
+				},
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: f(1, 4) },
+					],
+				},
+
+			// [117]
+			// oh
+				{
+					[text]: "oh. ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -3.5, [length]: f(1, 8) },
+						{ [pitch]: -6, [length]: f(9, 8) },
+					],
+				},
+			],
+		},
+		{
+			[css_class]: "bass",
+			[texts_and_notes]: [
+				{
+					[text]: null,
+					[pitches_and_lengths]: [
+						{ [pitch]: null, [length]: 20 },
+					],
+				},
+				{
+					[text]: "Oo ",
+					[pitches_and_lengths]: [
+						{ [pitch]: -2.5, [length]: 2 },
+					],
+				},
+			],
+		},
+	];
+	draw("div#chart > svg", BARS, reshape_parts_to_notes(PARTS));
+	document.getElementById("chart").scrollTo(180*76.5, 0);
+</script>

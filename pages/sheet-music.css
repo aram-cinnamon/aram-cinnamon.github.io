@@ -1,0 +1,98 @@
+body {
+	background-color: black;
+	color: white;
+}
+::-moz-selection{
+	background: #333;
+	color: white;
+}
+::selection{
+	background: #333;
+	color: white;
+}
+div#chart {
+	width: 100%;
+	overflow-x: scroll;
+}
+div#chart > svg {
+	/*background: black;*/
+	background: #eee;
+}
+div#chart > svg text {
+	font-family: Ubuntu, Verdana, sans-serif;
+}
+div#chart > svg text.hanging {
+	alignment-baseline: hanging;
+}
+div#chart > svg text.bar_number {
+	text-anchor: start;
+	alignment-baseline: hanging;
+	opacity: .6;
+}
+div#chart > svg rect.bar_line {
+	fill: black;
+	opacity: .6;
+}
+div#chart > svg rect.staff_line {
+	fill: black;
+	opacity: .15;
+}
+div#chart > svg rect.staff_line.clef {
+	opacity: .6;
+}
+
+div#chart > svg rect.solo {
+	cursor: pointer;
+	fill: darkslategray;
+}
+div#chart > svg text.solo {
+	fill: darkslategray;
+}
+
+div#chart > svg rect.soprano {
+	cursor: pointer;
+	fill: orange;
+}
+div#chart > svg text.soprano {
+	fill: darkgoldenrod;
+}
+
+div#chart > svg rect.mezzo {
+	cursor: pointer;
+	fill: orangered;
+}
+div#chart > svg text.mezzo {
+	fill: indianred;
+}
+
+div#chart > svg rect.alto {
+	cursor: pointer;
+	fill: red;
+}
+div#chart > svg text.alto {
+	fill: darkred;
+}
+
+div#chart > svg rect.tenor {
+	cursor: pointer;
+	fill: green;
+}
+div#chart > svg text.tenor {
+	fill: darkgreen;
+}
+
+div#chart > svg rect.baritone {
+	cursor: pointer;
+	fill: mediumblue;
+}
+div#chart > svg text.baritone {
+	fill: royalblue;
+}
+
+div#chart > svg rect.bass {
+	cursor: pointer;
+	fill: purple;
+}
+div#chart > svg text.bass {
+	fill: rebeccapurple;
+}
